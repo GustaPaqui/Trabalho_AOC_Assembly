@@ -1,7 +1,7 @@
 .data
 	msg_ent: .asciiz "Digite um numero octal (1 < n < 10000): "
 	msg_erro: .asciiz "Numero invalido! Tente novamente.\n"
-	msg_result: .asciiz "O Numero em decimal é: "
+	msg_result: .asciiz "O Numero em decimal Ã©: "
 	pl: .asciiz "\n"
 	buffer: .space 10
 	
@@ -21,7 +21,6 @@ loop:
 	li $a1, 10 #Defini limite que pode ser lido (10 bytes)
 	syscall
 	
-	#pre-Conversão
 	la $t0, buffer
 	li $t1, 0
 	
@@ -33,7 +32,7 @@ loop_conv:
 	sub $t2, $t2, 48	#Verificar Tabela ASCII
 	
 	bltz $t2, invalidado
-	bgt $t2, 7, invalidado #Não existe 8 e 9 em octal, portanto, se o numero digitado for maior que 7 é invalido
+	bgt $t2, 7, invalidado #NÃ£o existe 8 e 9 em octal, portanto, se o numero digitado for maior que 7 Ã© invalido
 
 	mul $t1, $t1, 8
 	add $t1, $t1, $t2
